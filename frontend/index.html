@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RADHA MUSIC</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="welcome">WELCOME TO RADHA MUSIC</div>
+<div id="loading" class="hidden"><div class="loader"></div></div>
+
+<div id="app" class="hidden">
+
+  <div class="header">
+    <img src="assets/logo.png" class="logo">
+    <h2>RADHA MUSIC</h2>
+  </div>
+
+  <div class="search-box">
+    <input id="searchInput" placeholder="Search songs...">
+    <button onclick="searchSongs()">Search</button>
+    <button onclick="startVoice()">🎤</button>
+  </div>
+
+  <div id="results"></div>
+
+  <h3>🎧 Up Next</h3>
+  <div id="queue"></div>
+
+  <h3>🎶 Lyrics</h3>
+  <div id="lyrics"></div>
+
+  <div id="player"></div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
