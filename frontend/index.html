@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RADHA MUSIC</title>
   <link rel="stylesheet" href="style.css">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
 
-<div id="welcome">WELCOME TO RADHA MUSIC</div>
-<div id="loading" class="hidden"><div class="loader"></div></div>
+<div id="welcome">🎵 WELCOME TO RADHA MUSIC</div>
+<div id="loading" class="hidden">
+  <div class="loader"></div>
+  <p style="text-align: center; margin-top: 20px; color: cyan;">Loading...</p>
+</div>
 
 <div id="app" class="hidden">
 
   <div class="header">
-    <img src="assets/logo.png" class="logo">
-    <h2>RADHA MUSIC</h2>
+    <h2>🎵 RADHA MUSIC</h2>
   </div>
 
   <div class="search-box">
@@ -24,13 +29,29 @@
 
   <div id="results"></div>
 
+  <div class="player-section">
+    <div class="now-playing">
+      <div class="thumbnail-container">
+        <img id="currentThumbnail" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Crect fill='%23333' width='120' height='120'/%3E%3Ctext x='50%25' y='50%25' font-size='40' fill='%23888' text-anchor='middle' dy='.3em'%3E🎵%3C/text%3E%3C/svg%3E" class="thumbnail animated">
+        <div class="play-indicator">▶️</div>
+      </div>
+      <div class="now-playing-info">
+        <h3 id="nowPlayingTitle">Select a song</h3>
+        <p id="nowPlayingArtist">Artist</p>
+        <audio id="audioPlayer" controls style="width: 100%; margin-top: 10px;">
+          <source src="" type="audio/mpeg">
+        </audio>
+      </div>
+    </div>
+  </div>
+
+  <div id="player" style="margin: 20px; border-radius: 10px; overflow: hidden;"></div>
+
   <h3>🎧 Up Next</h3>
-  <div id="queue"></div>
+  <div id="queue" class="queue-container"></div>
 
   <h3>🎶 Lyrics</h3>
-  <div id="lyrics"></div>
-
-  <div id="player"></div>
+  <div id="lyrics" class="lyrics-container">Lyrics will appear here...</div>
 
 </div>
 

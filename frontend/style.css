@@ -2,6 +2,7 @@ body {
   background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
   color: white;
   font-family: sans-serif;
+  overflow-x: hidden;
 }
 
 .hidden { display: none; }
@@ -11,6 +12,38 @@ body {
   margin-top: 40%;
   font-size: 24px;
   color: cyan;
+  animation: fadeIn 0.8s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 10px rgba(29, 185, 84, 0.5); }
+  50% { box-shadow: 0 0 20px rgba(29, 185, 84, 1); }
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 .loader {
@@ -18,15 +51,57 @@ body {
   height: 8px;
   margin: 40% auto;
   background: linear-gradient(to right, cyan, blue);
+  animation: slideInUp 0.8s ease-out;
 }
 
 .header {
   display: flex;
   align-items: center;
   gap: 10px;
+  animation: slideInUp 0.6s ease-out;
 }
 
-.logo { width: 40px; }
+.logo { 
+  width: 40px;
+  animation: rotate 20s linear infinite;
+}
+
+.search-box {
+  display: flex;
+  gap: 8px;
+  margin: 20px;
+  animation: slideInUp 0.6s ease-out 0.1s both;
+}
+
+.search-box input {
+  flex: 1;
+  padding: 12px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid #1db954;
+  border-radius: 8px;
+  color: white;
+  backdrop-filter: blur(10px);
+}
+
+.search-box input::placeholder {
+  color: rgba(255,255,255,0.5);
+}
+
+.search-box button {
+  background: #1db954;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.search-box button:hover {
+  background: #1ed760;
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(29, 185, 84, 0.7);
+}
 
 .song {
   background: rgba(255,255,255,0.05);
@@ -34,11 +109,200 @@ body {
   margin: 10px;
   padding: 10px;
   border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: slideInUp 0.4s ease-out;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
-button {
+.song:hover {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid #1db954;
+  transform: translateX(5px);
+}
+
+.song-thumbnail {
+  width: 50px;
+  height: 50px;
+  border-radius: 6px;
+  object-fit: cover;
+  animation: slideInUp 0.4s ease-out;
+}
+
+.song p {
+  flex: 1;
+  margin: 0;
+}
+
+.song button {
   background: #1db954;
   border: none;
-  padding: 8px;
+  padding: 8px 12px;
   border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+.song button:hover {
+  background: #1ed760;
+  transform: scale(1.1);
+}
+
+.play-btn {
+  background: #1db954 !important;
+  border: none !important;
+  padding: 10px 16px !important;
+  border-radius: 8px !important;
+  color: white !important;
+  cursor: pointer !important;
+  font-size: 14px !important;
+  transition: all 0.3s ease !important;
+  font-weight: bold !important;
+  z-index: 10 !important;
+}
+
+.play-btn:hover {
+  background: #1ed760 !important;
+  transform: scale(1.05) !important;
+  box-shadow: 0 0 15px rgba(29, 185, 84, 0.7) !important;
+}
+
+.play-btn:active {
+  transform: scale(0.95) !important;
+}
+
+/* PLAYER SECTION */
+.player-section {
+  background: linear-gradient(135deg, rgba(29, 185, 84, 0.1), rgba(29, 185, 84, 0.05));
+  margin: 20px;
+  padding: 20px;
+  border-radius: 15px;
+  border: 1px solid #1db954;
+  animation: slideInUp 0.6s ease-out 0.2s both;
+  backdrop-filter: blur(10px);
+}
+
+.now-playing {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.thumbnail-container {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.thumbnail {
+  width: 120px;
+  height: 120px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 8px 32px rgba(29, 185, 84, 0.3);
+  transition: all 0.3s ease;
+}
+
+.thumbnail.animated {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.play-indicator {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: #1db954;
+  padding: 8px;
+  border-radius: 50%;
+  font-size: 14px;
+  animation: glow 2s ease-in-out infinite;
+}
+
+.now-playing-info {
+  flex: 1;
+}
+
+.now-playing-info h3 {
+  margin: 0 0 5px 0;
+  font-size: 18px;
+}
+
+.now-playing-info p {
+  margin: 0 0 15px 0;
+  color: rgba(255,255,255,0.7);
+}
+
+.queue-container {
+  display: grid;
+  gap: 10px;
+  margin: 10px;
+}
+
+.queue-item {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+  animation: slideInUp 0.3s ease-out;
+}
+
+.queue-item:hover {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid #1db954;
+  transform: translateX(5px);
+}
+
+.queue-thumbnail {
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.queue-item-info {
+  flex: 1;
+}
+
+.queue-item-info p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.queue-remove {
+  background: #ff4444;
+  border: none;
+  padding: 5px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.queue-remove:hover {
+  background: #ff6666;
+}
+
+.lyrics-container {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  margin: 10px;
+  padding: 20px;
+  border-radius: 10px;
+  max-height: 300px;
+  overflow-y: auto;
+  animation: slideInUp 0.6s ease-out 0.3s both;
+  border: 1px solid rgba(29, 185, 84, 0.3);
+  line-height: 1.6;
+}
+
+#results {
+  animation: slideInUp 0.4s ease-out;
 }

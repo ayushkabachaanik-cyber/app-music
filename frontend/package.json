@@ -1,0 +1,9 @@
+{
+  "name": "radha-music-frontend",
+  "version": "1.0.0",
+  "description": "Frontend for RADHA MUSIC app",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "dev": "python3 -m http.server 8000"
+  }
+}
